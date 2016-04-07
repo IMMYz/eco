@@ -1,0 +1,153 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>新闻动态</title>
+    <link rel="stylesheet" type="text/css" href="{config.templateskin}/css/cx.css" />
+    <script type="text/javascript" src="http://www.panchina.org/templates/peac_v3/js/jquery.js"></script>
+    <script type="text/javascript" src="{config.templateskin}/js/flexslider/jquery.flexslider-min.js"></script>
+    <script type="text/javascript" src="{config.templateskin}/js/Swiper-master/idangerous.swiper.min.js"></script>
+    <script type="text/javascript">
+     
+    </script>
+</head>
+<body>
+    <div class="main toplogin">
+        <div class="con ">
+            <a href="#" class="red">请登录</a>
+            <a href="#">快速注册</a>
+        </div>
+    </div>
+    <div class="main">
+        <div class="con">
+            <div class="logo">
+                <a href="#" class="left">
+                    <img src="{config.templateskin}/images/logo.png" />
+                </a>
+                <img src="{config.templateskin}/images/company.png" class="right" />
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+    <div class="main nav">
+        <div class="con">
+            <ul class="menu">
+                <li><a href="#" class="active">首页</a></li>
+                <li class="hot"><a href="#">参赛报名</a></li>
+                <li class="new"><a href="#">参赛作品</a></li>
+                <li><a href="#">新闻动态</a></li>
+                <li><a href="#">关于大赛</a></li>
+            </ul>
+            <div class="clear"></div>
+        </div>
+    </div>
+
+
+    <div class="main m">
+        <div class="con">
+            <div class="page_nav">
+                <a href="#">首页></a>
+                <a href="#" class="active">新闻动态</a>
+            </div>
+           
+        </div>
+
+        <div class="content whitebk">
+            <div class="page">
+                <img src="{config.templateskin}/images/list_new.png" />
+                <ul class="page_new">
+                    <%set (DataTable){news_list}=get_news_list(channel_id, category_id, 6, page, "is_lock=0", out totalcount)%> <!--取得一个DataTable-->
+                    <%set (string){pagelist}=get_page_link(6, page, totalcount, "kp_list", category_id, "__id__")%>
+                    <%loop listdr news_list%>
+                    <li>
+                        <span class="page_new_date"><%datetostr({listdr[add_time]},yyyy-MM-dd)%></span>
+                        <h4><a title="{listdr[title]}" href="<%linkurl("kp_show",{listdr[id]})%>" ><%cutstring({listdr[title]},145)%></a></h4>
+                        <p>{listdr[zhaiyao]}<a href="<%linkurl("kp_show",{listdr[id]})%>">查看详情</a></p>
+                    </li>
+                    <%/loop%>
+                 </ul>
+            </div>
+
+            <div class="con_right">
+                <div class="right_new">
+                    <img src="{config.templateskin}/images/right_new.png" />
+                    <div class="clear"></div>
+                </div>
+
+
+                <div style="position:relative">
+                    <ul class="new_list">
+                        <%set (DataTable){rednews1}=get_news_list(channel_id, 0, 3,"is_red=1")%>
+                        <%loop reddr1 rednews1%>
+                        <li><a title="{reddr1[title]}" href="<%linkurl("kp_show",{reddr1[id]})%>" ><%cutstring({reddr1[title]},60)%></a><img class="flag" src="{config.templateskin}/images/flag_<%write reddr1__loop__id%>.png"></li>
+                        <%/loop%>
+                    </ul>
+                </div>
+
+
+                <div>
+                    <img class="right_new2" src="{config.templateskin}/images/right_new2.png" />
+                </div>
+                <div class="new_square">
+                    <div class="square_date_1">
+                        <h4>报名参赛</h4>
+                        <p>5月10日</p>
+                    </div>
+                    <div class="square_date_2">
+                        <h4>投票作品</h4>
+                        <p>5月10日</p>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="square_date_3">
+                        <p>6月10日</p>
+                        <h4>评审颁奖</h4>
+                    </div>
+                    <div class="square_date_4">
+                        <p>6月10日</p>
+                        <h4>进阶决赛</h4>
+                    </div>
+
+                </div>
+            </div>
+            <div class="clear"></div>
+            <div class="page next text-center">
+                <div class="next_num">
+                {pagelist}
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+    <div class="main footer">
+        <div class="con">
+            <div class="contact left">
+                <div class="contact_title">联系我们</div>
+                <p>如果您希望更多地了解大赛或参与活动，来电垂询。</p>
+                <p>办公地址：云南省昆明市五华区交三桥云南省科技厅</p>
+                <p>咨询电话：0871-65229899</p>
+            </div>
+            <div class="left">
+                <img src="{config.templateskin}/images/footerlogo.png" />
+                <p class="footernav"><a href="#">关于大赛</a> | <a href="#">参赛报名</a> | <a href="#">参赛作品</a> | <a href="#">专家评审组</a></p>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="hbk">
+            <div class="con">
+                <div class="one-third white">云南科普网版权所有</div>
+                <div class="one-third white">滇ICP备08000727号</div>
+                <div class="one-third white"></div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
