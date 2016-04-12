@@ -57,6 +57,16 @@
                 });
             };
         </script>
+    <script type="text/javascript">
+        function check() {
+            if (document.all['object'].checked) {
+                document.getElementById('id1').style.display = 'block';
+            }
+            else {
+                document.getElementById('id1').style.display = 'none';
+            }
+        }
+    </script>
     </head>
 <body>
     <%template src=/_other.html/%>
@@ -67,7 +77,7 @@
             <div class="content">
                 <div id="points">
                     <img src="{config.templateskin}/images/gfrc.jpg" />
-                    <div class="complain">
+                    <div class="notice">
                         <p>
                             实名举报奖励申明：
                             公司审计部将严格为您保密，并对举报事项展开调查、核实工作，若情况属实则上报公司董事会并向您反馈结果，后将根据《云南华夏房地产有限公司审计部奖惩条例》进行奖励。
@@ -76,31 +86,43 @@
                         <p>审计部邮箱地址：Hx_sjb@163.com</p>
                     </div>
                     <form id="complain_form" name="complain_form" url="{config.webpath}plugins/complain/ajax.ashx?action=add&ftype=2">
-                        <p>
-                        <label>投诉或举报：</label>
-                            <label style="width:inherit"><input type="radio" name="textType" value="投诉" />投诉</label>
-                            <label style="width:inherit"><input type="radio" name="textType" value="举报" />举报</label>
-                        </p>
-                        <p><label>您的姓名：</label><input type="text" id="txttxtUserName" name="txttxtUserName" class="name" datatype="*" nullmsg="请填写您的姓名" sucmsg=" "/>*</p>
-                        <p><label>性别：</label>
-                            <label style="width:inherit"><input type="radio" name="Sex" value="男性" />男性</label>
-                            <label style="width:inherit"><input type="radio" name="Sex" value="女性" />女性</label>
-                        </p>
-                        <p>
-                            <label>图片上传:</label><input type="file" name="file" />
-                        </p>
-                        <p><label class="left">留言说明:</label>
-                        <textarea id="txtContent" class="msgbox" name="textDescribe" datatype="*" nullmsg="请填写您的情况说明" sucmsg=" "></textarea>*</p>
-                        <p><label>联系电话:</label><input type="text" id="txtUserTel" name="txtUserTel" class="name"/></p>
-                        <p><label>联系邮箱：</label><input type="text" id="txtUserEmail" name="txtUserEmail" class="name" datatype="*" nullmsg="请填写您的联系邮箱" sucmsg=" " />*</p>
-                        
-                        <p>
-                            <label>验证码：</label><input id="txtCode" name="txtCode" type="text" datatype="*" sucmsg=" " nullmsg="请填写验证码！" style="width:80px;" />
-                            <a href="javascript:;" onclick="ToggleCode(this, '{config.webpath}tools/verify_code.ashx');return false;" style="color:#fff;">
-                                <img src="{config.webpath}tools/verify_code.ashx" width="80" height="22" />
-                            </a>
-                        </p>
-                        <p><input type="submit" class="button1 yellow point_search" value="提交" id="btnSubmit" name="btnSubmit" /></p>
+                            <div class="switch">
+                                <label style="float:left">是否实名：</label>
+                                <div  class="checkbox">
+                                    <input id="realname" name="object" type="checkbox" value="1" onclick="check();" />
+                                    <label style="width:60px" for="realname"></label>
+                                </div>
+                            </div>
+                        <div class="clear"></div>
+
+                        <div>
+                            <p>
+                                <label>投诉/举报：</label>
+                                <label style="width:inherit"><input type="radio" name="textType" value="投诉" />投诉</label>
+                                <label style="width:inherit"><input type="radio" name="textType" value="举报" />举报</label>
+                            </p>
+                            <div id="id1" style="display: none;">
+                                <p><label>您的姓名：</label><input type="text" id="txttxtUserName" name="txttxtUserName" class="name" datatype="*" nullmsg="请填写您的姓名" sucmsg=" " />*</p>
+                                <p>
+                                    <label>性别：</label>
+                                    <label style="width:inherit"><input type="radio" name="Sex" value="男性" />男性</label>
+                                    <label style="width:inherit"><input type="radio" name="Sex" value="女性" />女性</label>
+                                <p><label>联系邮箱：</label><input type="text" id="txtUserEmail" name="txtUserEmail" class="name" datatype="*" nullmsg="请填写您的联系邮箱" sucmsg=" " />*</p>
+                                </p>
+                            </div>
+                            <p><label>图片上传：</label><input type="file" name="file" /></p>
+                            <p>
+                                <label class="left">留言说明：</label>
+                                <textarea id="txtContent" class="msgbox" name="textDescribe" datatype="*" nullmsg="请填写您的情况说明" sucmsg=" "></textarea>*
+                            </p>
+                            <p>
+                                <label>验证码：</label><input id="txtCode" name="txtCode" type="text" datatype="*" sucmsg=" " nullmsg="请填写验证码！" style="width:80px;" />
+                                <a href="javascript:;" onclick="ToggleCode(this, '{config.webpath}tools/verify_code.ashx');return false;" style="color:#fff;">
+                                    <img src="{config.webpath}tools/verify_code.ashx" width="80" height="22" />
+                                </a>
+                            </p>
+                            <p><input type="submit" class="button1 yellow point_search" value="提交" id="btnSubmit" name="btnSubmit" /></p>
+                        </div>
                     </form>
                     <div class="clear"></div>
                 </div>
